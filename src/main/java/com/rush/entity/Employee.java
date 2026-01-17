@@ -22,6 +22,7 @@ public class Employee {
 
 	@Column(nullable = false)
 	private String name;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	private String gender;
@@ -35,8 +36,7 @@ public class Employee {
 	@Column(nullable = false)
 	private String password;
 
-	public Employee() {
-	}
+	public Employee() {}
 
 	public Employee(String name, LocalDate dob, String gender, String address, String city, String state, String loginId,
 			String password) {

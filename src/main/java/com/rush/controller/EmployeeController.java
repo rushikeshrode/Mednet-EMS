@@ -52,7 +52,7 @@ public class EmployeeController {
 		System.out.println(id + " :: " +password);
 		
 		Employee loggedEmployee = employeeDAO.isUserExixts(id, password);
-		
+
 	    if (id == null || password == null || id.isBlank() || password.isBlank() || loggedEmployee == null) {
 	        return "redirect:/login";
 	    }
@@ -88,7 +88,6 @@ public class EmployeeController {
 		model.addAttribute("employee", new Employee());
 		return "register";
 	}
-
 	
 	
 	@PostMapping("/register")
@@ -96,6 +95,7 @@ public class EmployeeController {
 		employeeDAO.saveEmployee(newEmployee);
 		return "redirect:/login";
 	}
+	
 	
 	@GetMapping("/edit/{id}")
 	public String updateEmployee(@PathVariable int id, HttpServletRequest request) {
@@ -118,10 +118,9 @@ public class EmployeeController {
 		
 	}
 	
+	
 	@PostMapping("/edit/updateEmployee")
 	public String updateEmployee(HttpServletRequest request) {
-		
-		
 		
 		System.out.println("ID received = " + request.getParameter("id"));
 
@@ -139,6 +138,7 @@ public class EmployeeController {
 	    employeeDAO.updateEmployee(e);
 
 	    return "redirect:/allEmployee";
+	    
 	}
 	
 	
@@ -168,6 +168,8 @@ public class EmployeeController {
 	    }
 
 	    return "redirect:/login";
+	    
 	}
+	
 	
 }

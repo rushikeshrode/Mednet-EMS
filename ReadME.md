@@ -34,32 +34,51 @@ To create a basic web application that allows:
 
 Mednet-EMS
 │
-├── src/main/java
-│   ├── com.rush.controller
-│   │   └── EmployeeController.java
-│   ├── com.rush.dao
-│   │   └── EmployeeDAO.java
-│   ├── com.rush.entity
-│   │   └── Employee.java
-│   └── com.rush.repo
-│       └── HibernateConn.java
+├── screenshots
+│   ├── registration.png
+│   ├── login.png
+│   ├── welcome.png
+│   ├── db-users.png
+│   ├── entity.png
+│   ├── controller-1.png
+│   ├── controller-2.png
+│   ├── dao.png
+│   ├── repository.png
+│   ├── hibernate-cfg.png
+│   └── login-jsp.png
 │
-├── src/main/resources
-│   └── hibernate.cfg.xml
-│
-├── src/main/webapp
-│   ├── WEB-INF
-│   │   ├── views
-│   │   │   ├── index.jsp
-│   │   │   ├── register.jsp
-│   │   │   ├── login.jsp
-│   │   │   ├── allEmployee.jsp
-│   │   │   └── editEmployee.jsp
-│   │   ├── web.xml
-│   │   └── mednetems-servlet.xml
+├── src
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── rush
+│       │           ├── controller
+│       │           │   └── EmployeeController.java
+│       │           ├── dao
+│       │           │   └── EmployeeDAO.java
+│       │           ├── entity
+│       │           │   └── Employee.java
+│       │           └── repo
+│       │               └── HibernateConn.java
+│       │
+│       ├── resources
+│       │   └── hibernate.cfg.xml
+│       │
+│       └── webapp
+│           ├── META-INF
+│           └── WEB-INF
+│               ├── views
+│               │   ├── index.jsp
+│               │   ├── register.jsp
+│               │   ├── login.jsp
+│               │   ├── allEmployee.jsp
+│               │   └── editEmployee.jsp
+│               ├── web.xml
+│               └── mednetems-servlet.xml
 │
 ├── pom.xml
 └── README.md
+
 
 ````
 
@@ -148,8 +167,43 @@ CREATE TABLE employees (
 
 ## 📸 Screenshots 
 
-The screenshots will be provided in next commit.
-expected location: Mednet-EMS/screenshots
+The following screenshots are provided as part of the submission:
+
+### 1️⃣ Employee Registration Page
+![Employee Registration Page](screenshots/registration.png)
+
+### 2️⃣ Login Page
+![Login Page](screenshots/login.png)
+
+### 3️⃣ Welcome Page (Employee List)
+![Welcome Page](screenshots/welcome.png)
+
+### 4️⃣ Database – Employees Table
+![Database Records](screenshots/db-users-2.png)
+![Database Records](screenshots/db-users.png)
+
+---
+
+### 5️⃣ Code Screenshots
+
+#### 5.1 Entity (Model)
+![Employee Entity](screenshots/entity.png)
+
+#### 5.2 Controller Layer
+![Employee Controller](screenshots/controller-1.png)
+![Employee Controller Methods](screenshots/controller-2.png)
+
+#### 5.3 DAO / Service Layer
+![Employee DAO](screenshots/dao.png)
+
+#### 5.4 Repository Layer
+![Hibernate Connection](screenshots/repository.png)
+
+#### 5.5 Hibernate Configuration
+![Hibernate Config](screenshots/hibernate-cfg.png)
+
+#### 5.6 Login JSP
+![Login JSP](screenshots/login-jsp.png)
 
 ---
 
