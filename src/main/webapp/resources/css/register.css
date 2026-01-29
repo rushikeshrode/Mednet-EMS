@@ -1,0 +1,198 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    min-height: 100vh;
+    background: #f2f5f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+
+/* ================= PAGE TITLE ================= */
+
+h1 {
+    font-size: 35px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+/* ================= FORM CARD ================= */
+
+.form-container {
+    background: #ffffff;
+    width: 750px; /* Wide for 2 columns */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+
+/* ================= FORM GRID ================= */
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    column-gap: 30px;
+    row-gap: 18px;
+}
+
+
+/* Full width rows */
+.form-row.full {
+    grid-column: 1 / 3;
+}
+
+
+/* ================= ROW ================= */
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ================= LABEL ================= */
+
+.form-row label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 14px;
+}
+
+
+/* ================= INPUTS ================= */
+
+.form-row input{
+    padding: 10px;
+    border: 1px solid #ccd1d9;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-row textarea {
+    padding: 10px;
+    border: 1px solid #ccd1d9;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 80px;
+}
+
+/* Select dropdown styling */
+.form-row select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #ccd1d9;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.form-row select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 4px rgba(52,152,219,0.4);
+}
+
+
+
+
+/* Focus */
+.form-row input:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 4px rgba(52,152,219,0.4);
+}
+
+
+/* ================= GENDER ================= */
+
+.gender-options {
+    display: flex;
+    gap: 30px;
+    margin-top: 4px;
+    font-size: 20px;
+}
+
+.gender-options label {
+    cursor: pointer;
+}
+
+.gender-options input {
+    margin-right: 5px;
+}
+
+
+/* ================= BUTTON AREA ================= */
+
+.button-area {
+    grid-column: 1 / 3;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+button {
+    padding: 11px 30px;
+    border: none;
+    border-radius: 5px;
+    background: #3498db;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+
+/* Login button */
+.login-btn {
+    background: #34495e;
+    margin-top: 12px;
+}
+
+.login-btn:hover {
+    background: #2c3e50;
+}
+
+
+/* ================= LINKS ================= */
+
+a {
+    text-decoration: none;
+}
+
+
+/* Error message */
+.error-msg {
+    background: #fdecea;
+    color: #c0392b;
+    border: 1px solid #e74c3c;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}

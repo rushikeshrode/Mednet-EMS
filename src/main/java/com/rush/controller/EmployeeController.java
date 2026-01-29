@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rush.dao.EmployeeDAO;
 import com.rush.entity.Employee;
+import com.rush.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
@@ -29,7 +30,8 @@ public class EmployeeController {
 	private static final String SESSION_USER = "loggedEmployee";
 	
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private EmployeeService employeeService;
+
 	
 	@GetMapping("/")
 	public String goToHome() {
@@ -44,22 +46,17 @@ public class EmployeeController {
 	
 	
 	@PostMapping("/login")
-	public String userLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public String userLogin(@RequestParam String loginId, @RequestParam String password, HttpSession session) throws IOException, ServletException {
+	
+		System.out.println(loginId + " :: " +password);
 		
-		String id = (String)request.getParameter("loginId");
-		String password = (String)request.getParameter("password");
+		Employee loggedEmployee = employeeService.login(loginId, password);
 
-		System.out.println(id + " :: " +password);
-		
-		Employee loggedEmployee = employeeDAO.isUserExixts(id, password);
-
-	    if (id == null || password == null || id.isBlank() || password.isBlank() || loggedEmployee == null) {
+	    if (loginId == null || password == null || loginId.isBlank() || password.isBlank() || loggedEmployee == null) {
 	        return "redirect:/login";
 	    }
 
-		HttpSession session = request.getSession();
 		session.setAttribute(SESSION_USER, loggedEmployee);
-		
 		return "redirect:/allEmployee";
 		
 	}
@@ -77,7 +74,7 @@ public class EmployeeController {
 	        return "redirect:/login";
 	    }
 		
-	    List<Employee> employees = employeeDAO.getAllEmployees();
+	    List<Employee> employees = employeeService.getAllEmployees();
 	    model.addAttribute("employees", employees);
 	    return "allEmployee"; 
 	}
@@ -91,17 +88,49 @@ public class EmployeeController {
 	
 	
 	@PostMapping("/register")
-	public String userRegister(@ModelAttribute Employee newEmployee) {
-		employeeDAO.saveEmployee(newEmployee);
-		return "redirect:/login";
+	public String userRegister(@ModelAttribute Employee newEmployee, Model model) {
+		
+		try {
+			
+	        employeeService.register(newEmployee);
+	        return "redirect:/login";
+	        
+	    } catch (Exception e) {
+			
+	        if ("DUPLICATE_LOGIN_ID".equals(e.getMessage()))
+	            model.addAttribute("error", "Login ID already taken. Please choose another.");
+	        else
+	            model.addAttribute("error", "Registration failed. Try again.");
+	    }
+		
+		return "register";
+		
 	}
+	
+	@GetMapping("/print/{id}")
+	public String printEmployee(@PathVariable int id, HttpSession session) {
+		
+		// Only Logged-In user must hv print url access
+		Object loggedUser = session.getAttribute(SESSION_USER);
+		System.out.println(">> Session Attribute:: " + loggedUser);
+		
+	    if (session == null || session.getAttribute(SESSION_USER) == null || loggedUser == null) {
+	        return "redirect:/login";
+	    }
+		
+	    Employee emp = employeeService.getEmployeeById(id);
+	    session.setAttribute("printEmployee", emp);
+
+	    return "printEmployee";
+	}
+
 	
 	
 	@GetMapping("/edit/{id}")
-	public String updateEmployee(@PathVariable int id, HttpServletRequest request) {
+	public String updateEmployee(@PathVariable int id, HttpSession session) {
 		
 		// Only Logged-In user must hv edit and update url access
-		Object loggedUser = request.getSession().getAttribute(SESSION_USER);
+		Object loggedUser = session.getAttribute(SESSION_USER);
 		System.out.println(">> Session Attribute::" + loggedUser);
 
 	    if (loggedUser == null) {
@@ -109,9 +138,7 @@ public class EmployeeController {
 	    }
 	    
 		System.out.println(id);
-		Employee findEmployeeById = employeeDAO.findEmployeeById(id);
-		
-		HttpSession session = request.getSession();
+		Employee findEmployeeById = employeeService.getEmployeeById(id);
 		session.setAttribute("findEmployeeById", findEmployeeById);
 		
 		return "editEmployee";
@@ -135,7 +162,7 @@ public class EmployeeController {
 	    e.setLoginId(request.getParameter("loginId"));
 	    e.setPassword(request.getParameter("password"));
 
-	    employeeDAO.updateEmployee(e);
+	    employeeService.updateEmployee(e);
 
 	    return "redirect:/allEmployee";
 	    
@@ -143,17 +170,17 @@ public class EmployeeController {
 	
 	
 	@GetMapping("/delete/{id}")
-	public String deleteEmployee(@PathVariable int id, HttpServletRequest request) {
+	public String deleteEmployee(@PathVariable int id, HttpSession session) {
 		
 		// Only Logged-In user must hv edit and update url access
-		Object loggedUser = request.getSession().getAttribute(SESSION_USER);
+		Object loggedUser = session.getAttribute(SESSION_USER);
 		System.out.println(">> Session Attribute:: " + loggedUser);
 
 	    if (loggedUser == null) {
 	        return "redirect:/login";
 	    }
 	    
-		employeeDAO.deleteEmployee(id);
+	    employeeService.deleteEmployee(id);
 		return "redirect:/allEmployee";
 		
 	}

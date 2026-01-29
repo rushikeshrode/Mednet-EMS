@@ -1,0 +1,97 @@
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* ================= BODY ================= */
+
+body {
+    min-height: 100vh;
+    background: #f2f5f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+
+
+/* ================= MAIN TITLE ================= */
+
+h1 {
+    font-size: 35px;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+
+/* ================= MAIN CARD ================= */
+
+.form-container {
+    background: #ffffff;
+    width: 600px;
+    padding: 40px 35px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ================= HOME CONTENT ================= */
+
+.home-box p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #34495e;
+    font-size: 20px;
+    text-align: justify;
+}
+
+
+/* ================= BUTTON AREA ================= */
+
+.button-center {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+/* ================= BUTTONS ================= */
+
+button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 5px;
+    background: #3498db;
+    color: #ffffff;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 0 8px;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+
+/* Login button */
+.login-btn {
+    background: #34495e;
+}
+
+.login-btn:hover {
+    background: #2c3e50;
+}
+
+
+/* ================= LINKS ================= */
+
+a {
+    text-decoration: none;
+}

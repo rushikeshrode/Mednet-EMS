@@ -4,6 +4,43 @@ This project was developed as part of a technical task assigned by **Oakland Sys
 
 ---
 
+## 🚀 Version 3.0 Enhancements
+
+### ✨ New Features
+
+* Added **Print Employee Details** functionality
+* Implemented a new, clean, and responsive UI
+* Created separate CSS files for each view page
+* Introduced Service Layer for better modularity
+* Improved implementation class structure
+* Enhanced overall user experience
+
+---
+
+### 🛠️ Bug Fixes & Improvements
+
+* Fixed Password and Confirm Password validation issues
+* Added duplicate Login ID validation and warning
+* Secured APIs to allow access only for authenticated users
+* Improved code readability and maintainability
+* Optimized Controller → Service → DAO workflow
+
+---
+
+### 🏗️ Architecture Improvements
+
+* Implemented layered architecture:
+
+  * Controller Layer
+  * Service Layer
+  * DAO Layer
+  * Repository Layer
+  * Entity Layer
+* Follows industry-standard MVC design pattern
+* Improves scalability and long-term maintenance
+
+---
+
 ## 📌 Project Objective
 
 To create a basic web application that allows:
@@ -31,21 +68,26 @@ To create a basic web application that allows:
 ## 📂 Project Structure
 
 ```
-
 Mednet-EMS
 │
 ├── screenshots
-│   ├── registration.png
-│   ├── login.png
-│   ├── welcome.png
-│   ├── db-users.png
-│   ├── entity.png
 │   ├── controller-1.png
 │   ├── controller-2.png
+│   ├── controller-3.png
 │   ├── dao.png
-│   ├── repository.png
+│   ├── db-users.png
+│   ├── db-users-2.png
+│   ├── Delete_Confirmation.jpg
+│   ├── entity.png
 │   ├── hibernate-cfg.png
-│   └── login-jsp.png
+│   ├── Home_Page.jpeg
+│   ├── Login_Page.jpeg
+│   ├── login-jsp.png
+│   ├── Print_Page.jpg
+│   ├── Registration_Page.jpeg
+│   ├── repository.png
+│   ├── Update_Emp_Page.jpeg
+│   └── Welcome_Page.jpeg
 │
 ├── src
 │   └── main
@@ -54,78 +96,121 @@ Mednet-EMS
 │       │       └── rush
 │       │           ├── controller
 │       │           │   └── EmployeeController.java
+│       │           │
+│       │           ├── service
+│       │           │   ├── EmployeeService.java
+│       │           │   └── EmployeeServiceImpl.java
+│       │           │
 │       │           ├── dao
-│       │           │   └── EmployeeDAO.java
-│       │           ├── entity
-│       │           │   └── Employee.java
-│       │           └── repo
-│       │               └── HibernateConn.java
+│       │           │   ├── EmployeeDAO.java
+│       │           │   └── EmployeeDAOImpl.java
+│       │           │
+│       │           ├── repo
+│       │           │   └── HibernateConn.java
+│       │           │
+│       │           └── entity
+│       │               └── Employee.java
 │       │
 │       ├── resources
 │       │   └── hibernate.cfg.xml
 │       │
 │       └── webapp
 │           ├── META-INF
+│           │
+│           ├── resources
+│           │   └── css
+│           │       ├── allEmployee.css
+│           │       ├── index.css
+│           │       ├── login.css
+│           │       └── register.css
+│           │
 │           └── WEB-INF
+│               ├── lib
+│               │
 │               ├── views
-│               │   ├── index.jsp
-│               │   ├── register.jsp
-│               │   ├── login.jsp
 │               │   ├── allEmployee.jsp
-│               │   └── editEmployee.jsp
-│               ├── web.xml
-│               └── mednetems-servlet.xml
+│               │   ├── editEmployee.jsp
+│               │   ├── index.jsp
+│               │   ├── login.jsp
+│               │   ├── printEmployee.jsp
+│               │   └── register.jsp
+│               │
+│               ├── mednetems-servlet.xml
+│               └── web.xml
 │
+├── target
 ├── pom.xml
 └── README.md
-
 
 ````
 
 ---
 
-## 🧾 Features Implemented
+## 🧾 Features Implemented (Version 3.0)
 
-### 1️: Employee Registration
-- Fields:
-  - Name
-  - Date of Birth
-  - Gender
-  - Address
-  - City
-  - State
-  - Login ID
-  - Password
-- Saves employee details into MySQL using Hibernate
+### ✅ Core Features
 
----
+### 1️⃣ Employee Registration
 
-### 2️: Login Functionality
-- Login using **Login ID & Password**
-- Validates credentials from database
-- Creates session on successful login
+* Captures employee details:
 
----
-
-### 3️: Welcome Page
-- Displays:
-  - Welcome message with logged-in employee name
-  - List of all registered employees
-- Session-based access control
-- Direct URL access is restricted without login
+  * Name
+  * Date of Birth
+  * Gender
+  * Address
+  * City
+  * State
+  * Login ID
+  * Password
+  * Confirm Password
+* Stores employee information securely in MySQL using Hibernate
+* Prevents duplicate Login IDs
 
 ---
 
-### 4️: Employee Update & Delete
-- Update employee details
-- Delete employee records
-- Changes are reflected in the database
+### 2️⃣ Authentication & Login
+
+* Login using **Login ID and Password**
+* Validates credentials from database
+* Session-based authentication
+* Restricted access for unauthorized users
 
 ---
 
-### 5️: Logout
-- Invalidates session
-- Prevents access to protected pages after logout
+### 3️⃣ Dashboard / Welcome Page
+
+* Displays:
+
+  * Personalized welcome message
+  * Logged-in employee name
+  * List of all registered employees
+* Protected using session validation
+* Prevents direct URL access without login
+
+---
+
+### 4️⃣ Employee Management (CRUD)
+
+* View all employees
+* Update employee details
+* Delete employee records with confirmation
+* All changes are synchronized with the database
+
+---
+
+### 5️⃣ Print Employee Details 🖨️
+
+* Allows users to print employee information
+* Generates printer-friendly layout
+* Improves documentation and record keeping
+
+---
+
+### 6️⃣ Secure Logout
+
+* Terminates user session
+* Prevents back-navigation after logout
+* Protects application data
 
 ---
 
@@ -170,13 +255,13 @@ CREATE TABLE employees (
 The following screenshots are provided as part of the submission:
 
 ### 1️⃣ Employee Registration Page
-![Employee Registration Page](screenshots/registration.png)
+![Employee Registration Page](screenshots/Registration_Page.jpeg)
 
 ### 2️⃣ Login Page
-![Login Page](screenshots/login.png)
+![Login Page](screenshots/Login_Page.jpeg)
 
 ### 3️⃣ Welcome Page (Employee List)
-![Welcome Page](screenshots/welcome.png)
+![Welcome Page](screenshots/Welcome_Page.jpeg)
 
 ### 4️⃣ Database – Employees Table
 ![Database Records](screenshots/db-users-2.png)
